@@ -9,6 +9,7 @@ import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntitySilverfish;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -102,6 +103,15 @@ public class ExampleMod {
         }
     }
 
+    @SubscribeEvent
+    public static void everburn(LivingDamageEvent e) {
+        if (e.getEntityLiving() instanceof EntityPlayer) {
+            EntityPlayer victim = (EntityPlayer)e.getEntityLiving();
+            if (victim.isBurning() || e.getSource().isFireDamage()) {
+                victim.setFire(100);
+            }
+        }
+    }
 
     @SubscribeEvent
     public static void models(ModelRegistryEvent e) {

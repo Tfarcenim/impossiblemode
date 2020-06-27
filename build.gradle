@@ -15,7 +15,7 @@ apply plugin: 'org.spongepowered.mixin'
 
 
 version = "${mod_version}"
-group = "com.tfar.modid" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = "tfar" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "impossiblemode"
 
 jar.manifest.attributes(
@@ -31,7 +31,7 @@ compileJava {
 }
 
 minecraft {
-    version = "1.12.2-14.23.5.2838"
+    version = "1.12.2-14.23.5.2847"
     runDir = "run"
     coreMod = 'tfar.impossiblemode.asm.Transformer'
     // the mappings can be changed at any time, and must be in the following format.
@@ -71,8 +71,9 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
 }
+
 mixin {
-    add sourceSets.main, 'mixins.impossiblemode.refmap.json'
+    //add sourceSets.main, 'mixins.impossiblemode.refmap.json'
 }
 processResources {
     // this will ensure that this task is redone when the versions change.
