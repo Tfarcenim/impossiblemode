@@ -3,13 +3,14 @@
   "package": "tfar.impossiblemode.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "EntityLivingBaseMixin",
-    "ItemStackMixin",
-    "BlockMixin",
-    "EntitySpiderMixin",
-    "EntityLivingMixin",
     "AbstractSkeletonMixin",
-    "EntityEndermanMixin"
+    "BlockMixin",
+    "EntityEndermanMixin",
+    "EntityLivingBaseMixin",
+    "EntityLivingMixin",
+    "EntityMixin",
+    "EntitySpiderMixin",
+    "ItemStackMixin"
   ],
   "client": [
   ],

@@ -1,22 +1,19 @@
 package tfar.impossiblemode;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockTorch;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.TorchBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class TorchBlockExt extends BlockTorch {
+public class TorchBlockExt extends TorchBlock {
 
-	@Override
-	public Block setSoundType(SoundType sound) {
-		return super.setSoundType(sound);
+	protected TorchBlockExt(Properties properties) {
+		super(properties);
 	}
 
 	@Override
-	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+	public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 	}
 }

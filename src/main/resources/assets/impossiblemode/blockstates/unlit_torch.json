@@ -1,9 +1,5 @@
 {
   "variants": {
-    "facing=up": { "model": "impossiblemode:unlit_torch" },
-    "facing=east": { "model": "impossiblemode:unlit_wall_torch" },
-    "facing=south": { "model": "impossiblemode:unlit_wall_torch", "y": 90 },
-    "facing=west": { "model": "impossiblemode:unlit_wall_torch", "y": 180 },
-    "facing=north": { "model": "impossiblemode:unlit_wall_torch", "y": 270 }
+    "": { "model": "impossiblemode:block/unlit_torch" }
   }
 }
