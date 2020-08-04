@@ -1,14 +1,15 @@
 package tfar.impossiblemode.mixin;
 
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.SpiderEntity;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(SpiderEntity.class)
 public class EntitySpiderMixin extends MonsterEntity {
@@ -17,8 +18,8 @@ public class EntitySpiderMixin extends MonsterEntity {
 		super(type, worldIn);
 	}
 
-	@Inject(method = "registerAttributes",at = @At("RETURN"))
-	private void fastSpooder(CallbackInfo ci){
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(1.5);
+	@Inject(method = "func_234305_eI_",at = @At("RETURN"))
+	private static void fastSpooder(CallbackInfoReturnable<AttributeModifierMap.MutableAttribute> cir){
+		cir.getReturnValue().createMutableAttribute(Attributes.MOVEMENT_SPEED, 1.5);
 	}
 }

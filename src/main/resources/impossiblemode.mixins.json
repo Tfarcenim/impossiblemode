@@ -3,6 +3,7 @@
   "package": "tfar.impossiblemode.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "AbstractBlockMixin",
     "AbstractSkeletonMixin",
     "BlockMixin",
     "EntityEndermanMixin",

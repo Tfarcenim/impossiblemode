@@ -2,6 +2,7 @@ package tfar.impossiblemode;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.monster.CreeperEntity;
@@ -12,15 +13,21 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.ForgeConfig;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 
 import static net.minecraft.util.DamageSource.LAVA;
+import static net.minecraftforge.common.MinecraftForge.EVENT_BUS;
 
 @Mod(ImpossibleMode.MODID)
 @Mod.EventBusSubscriber
@@ -30,13 +37,25 @@ public class ImpossibleMode {
     public static final String VERSION = "1.0";
 
     public ImpossibleMode(){
+        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+                EVENT_BUS.addListener(this::air);
+        }
+    }
+
+    private void air(RenderGameOverlayEvent.Pre e) {
+        if (e.getType() == RenderGameOverlayEvent.ElementType.AIR) {
+            if (Minecraft.getInstance().player.getAir() >= Minecraft.getInstance().player.getMaxAir()) {
+                e.setCanceled(true);
+            }
+        }
     }
 
     public static Block unlit_torch;
 
     @SubscribeEvent
     public static void block(RegistryEvent.Register<Block> event) {
-        Block.Properties properties = Block.Properties.from(Blocks.TORCH).lightValue(0);
+        Block.Properties properties = Block.Properties.from(Blocks.TORCH).setLightLevel(state -> 0);
         event.getRegistry().register(unlit_torch = new TorchBlockExt(properties)
                 .setRegistryName("unlit_torch"));
         ForgeConfig.SERVER.zombieBabyChance.set(1d);;

@@ -10,7 +10,7 @@ import java.util.Random;
 public class TorchBlockExt extends TorchBlock {
 
 	protected TorchBlockExt(Properties properties) {
-		super(properties);
+		super(properties,null);
 	}
 
 	@Override
